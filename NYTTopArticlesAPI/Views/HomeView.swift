@@ -38,16 +38,19 @@ class HomeView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     //------- Tableview Delegate Methods ------------------//
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vm.results.count
+        return vm.getArticleCount() ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? HomeTVC
-        let new = vm.results[indexPath.row]
-        cell?.setData(title: new.title ?? "", byline: new.byline ?? "NYTimes", published: new.published_date ?? "", url: new.multimedia?[0].url ?? "")
+        let title = vm.getArticleTitle(index: indexPath.row) ?? ""
+        let byline = vm.getArticleByline(index: indexPath.row) ?? ""
+        let date = vm.getArticleDate(index: indexPath.row) ?? ""
+        let photo = vm.getArticlePhoto(index: indexPath.row) ?? ""
+        cell?.setData(title: title, byline: byline, published: date, url: photo)
         return cell ?? HomeTVC()
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.passData(url: vm.results[indexPath.row].url ?? "")
+        delegate?.passData(url: vm.results?[indexPath.row].url ?? "")
     }
 }
 protocol PassUrlData {

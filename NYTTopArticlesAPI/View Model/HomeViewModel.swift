@@ -8,7 +8,7 @@
 import Foundation
 
 class HomeViewModel {
-    var results: [Articles] = []
+    var results: [Articles]?
     typealias CompletionHandler = (()->())?
     func getData(completionHandler: CompletionHandler) {
         APIHandler.shared.get(urlString: Constant.newsURL) { res in
@@ -18,4 +18,20 @@ class HomeViewModel {
             }
         }
     }
+    func getArticleCount() -> Int? {
+        return results?.count
+    }
+    func getArticleTitle(index: Int) -> String? {
+        return results?[index].title
+    }
+    func getArticleByline(index: Int) -> String? {
+        return results?[index].byline
+    }
+    func getArticleDate(index: Int) -> String? {
+        return results?[index].published_date
+    }
+    func getArticlePhoto(index: Int) -> String? {
+        return results?[index].multimedia?[0].url
+    }
+    
 }

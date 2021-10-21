@@ -12,6 +12,7 @@ class HomeTVC: UITableViewCell {
     var bylineLbl = UILabel()
     var publishedDataLbl = UILabel()
     var cellImage = UIImageView()
+    var date = Date()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -51,16 +52,7 @@ class HomeTVC: UITableViewCell {
     func setData(title: String, byline: String, published: String, url: String) {
         titleLbl.text = title
         bylineLbl.text = byline
-        publishedDataLbl.text = published
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        let dateTranslate = DateFormatter()
-        dateTranslate.dateFormat = "MMM dd,yyyy"
-        if let Date = dateFormatter.date(from: published) {
-            publishedDataLbl.text = dateTranslate.string(from: Date)
-        }
+        publishedDataLbl.dateFormat(date: published)
         cellImage.sd_setImage(with: URL(string: url), placeholderImage: UIImage())
     }
-    
-
 }

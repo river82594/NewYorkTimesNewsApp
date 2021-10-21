@@ -14,7 +14,6 @@ class HomeVC: UIViewController, PassUrlData{
         super.viewDidLoad()
         setupUI()
         getTblData()
-
     }
     func getTblData(){
         vm.getData {
