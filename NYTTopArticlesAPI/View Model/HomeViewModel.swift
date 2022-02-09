@@ -37,3 +37,8 @@ class HomeViewModel {
 }
 
 //Lets get this bag boi
+
+//Yeah boi i think i know wasssup now
+
+//Hopefully I can conquer this
+
